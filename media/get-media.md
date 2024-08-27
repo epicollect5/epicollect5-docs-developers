@@ -37,7 +37,6 @@ The **format** must be one of following, depending on the **type**:
 | project\_mobile\_logo | photo | The Project logo mobile image.    | 128x128px  |
 | entry\_original       | photo | The entry original photo image.   | 1024x768px |
 | entry\_thumb          | photo | The entry photo thumbnail image.  | 100x100px  |
-| entry\_sidebar        | photo | The entry photo sidebar image.    | 400x300px  |
 | audio                 | audio | The entry original audio.         | n/a        |
 | video                 | video | The entry original video.         | n/a        |
 

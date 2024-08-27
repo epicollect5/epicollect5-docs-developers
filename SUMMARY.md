@@ -23,7 +23,11 @@
 
 * [Create Client App](api-authentication/create-client-app.md)
 * [Retrieve Token](api-authentication/retrieve-token.md)
-* [Access Resources](api-authentication/access-resources.md)
+* [Access Resources](api-authentication/access-resources/README.md)
+  * [JQuery](api-authentication/access-resources/jquery.md)
+  * [PHP](api-authentication/access-resources/php.md)
+  * [Axios](api-authentication/access-resources/axios.md)
+  * [Fetch](api-authentication/access-resources/fetch.md)
 
 ## Examples
 
