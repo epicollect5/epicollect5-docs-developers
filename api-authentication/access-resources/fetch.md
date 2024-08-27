@@ -1,8 +1,12 @@
 ---
-description: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+description: >-
+  The Fetch API provides a JavaScript interface for making HTTP requests and
+  processing the responses.
 ---
 
 # Fetch API
+
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch\_API/Using\_Fetch) provides a JavaScript interface for making HTTP requests and processing the responses.
 
 Using `fetch()` [JSFiddle](https://jsfiddle.net/mirko77/28qk35mx/4)
 

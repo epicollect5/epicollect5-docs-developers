@@ -13,4 +13,4 @@ Examples:
 * [JQuery](jquery.md)
 * [PHP](php.md)
 * [Axios](axios.md)
-* [Fetch](fetch-api.md)
+* [Fetch](fetch.md)
