@@ -27,7 +27,7 @@
   * [JQuery](api-authentication/access-resources/jquery.md)
   * [PHP](api-authentication/access-resources/php.md)
   * [Axios](api-authentication/access-resources/axios.md)
-  * [Fetch](api-authentication/access-resources/fetch.md)
+  * [Fetch API](api-authentication/access-resources/fetch-api.md)
 
 ## Examples
 

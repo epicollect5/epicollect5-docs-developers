@@ -1,4 +1,8 @@
-# Fetch
+---
+description: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+---
+
+# Fetch API
 
 Using `fetch()` [JSFiddle](https://jsfiddle.net/mirko77/28qk35mx/4)
 
