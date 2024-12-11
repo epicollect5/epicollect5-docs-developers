@@ -1,6 +1,6 @@
 # Get Media
 
-Get the Project logo image or the media for a particular Entry Answer in a Project. If the project is private, an `access_token` must be provided (See: API Authentication).
+Get the Project logo image or the media for a particular Entry Answer in a Project. If the project is private, an `access_token` must be provided. [**See API Authentication.**](../api-authentication/create-client-app.md)
 
 We assume the base domain to be **five.epicollect.net**.
 
@@ -44,4 +44,6 @@ The **format** must be one of following, depending on the **type**:
 
 The **name** is the name of the media file.\
 For the project logo, this will be `logo.jpg`.\
-For entry media, this will be the entry answer.
+For entry media, this will be the entry answer.\
+\
+[**See code examples**](../examples/getting-media.md)
