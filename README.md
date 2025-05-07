@@ -29,21 +29,24 @@ A full list of the available status codes can be found [here](https://five.epico
 
 ## Rate limiting
 
-We currently limit accessing the API to&#x20;
+We currently limit access to the API to
 
 * 60 requests per minute for entries.
 * 30 requests per minute for media files.
 * 1000 entries per request.
+* 10 auth tokens per hour.
+
+These limits apply to a single IP address.
 
 {% hint style="warning" %}
-Every day hundreds of developers make requests to the Epicollect5 API. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide the reliable and scalable API that our developer community relies on.
+Every day, hundreds of developers make requests to the Epicollect5 API. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide a reliable and scalable API that our developer community relies on.
 {% endhint %}
 
 ## Authentication
 
 For **PRIVATE** projects, access to data is restricted.
 
-In order to access the data, you need to create an Epicollect5 Client App and generate an API Token, which can be added to all requests made via the Authorization header, like so:
+To access the data, you need to create an Epicollect5 Client App and generate an API Token, which can be added to all requests made via the **Authorization** header, like so:
 
 `Authorization: Bearer {api_token}`
 
