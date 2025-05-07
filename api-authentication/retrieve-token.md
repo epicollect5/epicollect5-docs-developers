@@ -2,7 +2,12 @@
 
 Once you have set up a project App, you can then request an access token using your **Client ID** and **Client Secret**.
 
-PLEASE NOTE: access tokens are valid for **2 hours** after they are issued.
+{% hint style="warning" %}
+Access tokens are valid for **2 hours** from the time they are issued.
+
+To help prevent abuse and ensure fair use for all users, we currently enforce a **rate limit of 10 tokens per hour per IP address**.\
+This restriction helps protect the system from automated misuse and excessive traffic from a single source.
+{% endhint %}
 
 ## HTTP REQUEST
 
