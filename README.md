@@ -2,18 +2,18 @@
 
 ## Epicollect5 API
 
-Epicollect5 is currently a **read-only** API. Only **GET** requests are exposed to third party clients/apps.
+Epicollect5 is currently a **read-only** API. Only **GET** requests are exposed to third-party clients/apps.
 
-Adding/editing resources can be done only via Epicollect5 official applications (Android, iOS, web).
+Adding/editing resources can be done only via the Epicollect5 official applications (Android, iOS, web).
 
-Only secure **https** requests are allowed.
+Only secure **HTTPS** requests are allowed.
 
 ## Server responses:
 
-* 200 `OK` the request was successful.
-* 400 `Bad Request` the request could not be understood or was missing required parameters.
-* 404 `Not Found` the resource was not found.
-* 500 `Internal Server Error` something unexpected happened
+* 200 `OK` The request was successful.
+* 400 `Bad Request` The request could not be understood or was missing required parameters.
+* 404 `Not Found` The resource was not found.
+* 500 `Internal Server Error` Something unexpected happened
 
 ## Status code responses
 
@@ -32,6 +32,7 @@ A full list of the available status codes can be found [here](https://five.epico
 We currently limit access to the API to
 
 * 60 requests per minute for entries.
+* 10 requests per minute for Google Apps Scripts.
 * 30 requests per minute for media files.
 * 1000 entries per request.
 * 10 auth tokens per hour.
@@ -41,6 +42,78 @@ These limits apply to a single IP address.
 {% hint style="warning" %}
 Every day, hundreds of developers make requests to the Epicollect5 API. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide a reliable and scalable API that our developer community relies on.
 {% endhint %}
+
+## Google Apps Scripts Integration
+
+Google Apps Script is a popular way to sync Epicollect5 data into Google Sheets. However, Google Apps Script rotates through a large pool of shared IP addresses, which means multiple users' scripts share the same IP. This makes it impossible for us to apply per-user limits without affecting other users on the same IP.
+
+As a result, **Google Apps Script integrations are subject to the same 10 requests per minute limit shared across all scripts running from the same IP at any given time.**
+
+To avoid hitting this limit, follow the best practices below.
+
+#### Best practices for automated exports
+
+**✅ Always use a date filter**
+
+The most important optimisation. Instead of fetching your entire dataset on every run, only fetch entries uploaded since your last sync:
+
+```
+/api/export/entries/{project-slug}
+    ?form_ref={your-form-ref}
+    &per_page=1000
+    &filter_by=uploaded_at
+    &filter_from=2026-03-15T00:00:00.000Z
+```
+
+In your script, store the timestamp of the last successful sync and use it as `filter_from` on the next run. This way, each run fetches only new entries — typically a handful of rows — rather than your entire dataset.
+
+**✅ Use per\_page=1000**
+
+Using smaller page sizes like `per_page=100` means 10× more requests for the same data. Always use `per_page=1000` unless you have a specific reason not to.
+
+**✅ Add a delay between requests in your script**
+
+Even a small delay between paginated requests spreads the load and keeps you well within the rate limit. In Google Apps Script:
+
+```javascript
+function exportData() {
+    const baseUrl = 'https://five.epicollect.net/api/export/entries/your-project';
+    const formRef = 'your-form-ref';
+    const lastSync = getLastSyncDate(); // retrieve from script properties
+    
+    let page = 1;
+    let allData = [];
+    
+    while (true) {
+        const url = `${baseUrl}?form_ref=${formRef}&per_page=1000&page=${page}` +
+                    `&filter_by=uploaded_at&filter_from=${lastSync}`;
+        
+        const response = UrlFetchApp.fetch(url, {
+            headers: { 'Authorization': 'Bearer ' + getToken() }
+        });
+        
+        const data = JSON.parse(response.getContentText());
+        
+        if (data.data.data.length === 0) break;
+        
+        allData = allData.concat(data.data.data);
+        page++;
+        
+        Utilities.sleep(1000); // 1 second delay between pages
+    }
+    
+    // Save last sync timestamp
+    saveLastSyncDate(new Date().toISOString());
+    
+    return allData;
+}
+```
+
+**❌ Do not fetch your entire dataset on every run**
+
+Fetching all pages of a large project on every script execution is the most common cause of rate limit violations. It is unnecessary in almost all cases and places a significant load on our servers, affecting all EpiCollect5 users.
+
+Scripts that repeatedly fetch entire datasets without date filters will receive a `429 Too Many Requests` response with guidance on how to fix the issue. Persistent violations may result in automated API access being suspended for the affected project.
 
 ## Authentication
 
