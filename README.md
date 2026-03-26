@@ -99,7 +99,7 @@ function exportData() {
         allData = allData.concat(data.data.data);
         page++;
         
-        Utilities.sleep(1000); // 1 second delay between pages
+        Utilities.sleep(15000); // 15 seconds delay between pages
     }
     
     // Save last sync timestamp
@@ -111,9 +111,9 @@ function exportData() {
 
 **❌ Do not fetch your entire dataset on every run**
 
-Fetching all pages of a large project on every script execution is the most common cause of rate limit violations. It is unnecessary in almost all cases and places a significant load on our servers, affecting all EpiCollect5 users.
+Fetching all pages of a large project on every script execution is the most common cause of rate limit violations. It is unnecessary in almost all cases and places a significant load on our servers, affecting all Epicollect5 users.
 
-Scripts that repeatedly fetch entire datasets without date filters will receive a `429 Too Many Requests` response with guidance on how to fix the issue. Persistent violations may result in automated API access being suspended for the affected project.
+Scripts that repeatedly fetch entire datasets without date filters will receive a `429 Too Many Requests` response. Persistent violations may result in automated API access being suspended for the affected project.
 
 ## Authentication
 
