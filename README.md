@@ -31,9 +31,10 @@ A full list of the available status codes can be found [here](https://five.epico
 
 We currently limit access to the API to
 
-* 10 requests per hour per project.
+* 60 requests per minute per project.
+* 60 requests per minute per entries
 * 30 requests per minute for media files.
-* 500 entries per request.
+* 1000 entries per request.
 * 10 auth tokens per hour.
 
 {% hint style="warning" %}
@@ -42,11 +43,7 @@ Every day, hundreds of developers make requests to the Epicollect5 API. To help 
 
 ## Google Apps Scripts Integration
 
-Google Apps Script is a popular way to sync Epicollect5 data into Google Sheets. However, Google Apps Script rotates through a large pool of shared IP addresses, which means multiple users' scripts share the same IP. This makes it impossible for us to apply per-user limits without affecting other users on the same IP.
-
-As a result, **Google Apps Script integrations are subject to the same 10 requests per hour limit shared across all scripts at any given time.**
-
-To avoid hitting this limit, follow the best practices below.
+Google Apps Script is a popular way to sync Epicollect5 data into Google Sheets. To avoid hitting limits, follow the best practices below.
 
 #### Best practices for automated exports
 
