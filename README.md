@@ -8,14 +8,14 @@ Adding/editing resources can be done only via the Epicollect5 official applicati
 
 Only secure **HTTPS** requests are allowed.
 
-## Server responses:
+## Server Responses:
 
 * 200 `OK` The request was successful.
 * 400 `Bad Request` The request could not be understood or was missing required parameters.
 * 404 `Not Found` The resource was not found.
 * 500 `Internal Server Error` Something unexpected happened
 
-## Status code responses
+## Status Code Responses
 
 When an error occurs, you will receive a status code in the response.
 
@@ -27,18 +27,19 @@ Error objects are returned in the standard [JSON API format](http://jsonapi.org/
 
 A full list of the available status codes can be found [here](https://five.epicollect.net/json/ec5-status-codes/en.json).
 
-## Rate limiting
+## Rate Limiting
 
 We currently limit access to the API to
 
-* 60 requests per minute per project.
-* 60 requests per minute per entries
+* 60 requests per minute for projects (JSON structure).
+* 60 requests per minute for entries.
 * 30 requests per minute for media files.
-* 1000 entries per request.
+* 1000 entries per request max.
 * 10 auth tokens per hour.
 
 {% hint style="warning" %}
-Every day, hundreds of developers make requests to the Epicollect5 API. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide a reliable and scalable API that our developer community relies on.
+Every day, hundreds of developers make requests to the Epicollect5 API. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide a reliable and scalable API that our developer community relies on. \
+**We reserve the right to lower these limits at any time if systems become overloaded.**
 {% endhint %}
 
 ## Google Apps Scripts Integration
