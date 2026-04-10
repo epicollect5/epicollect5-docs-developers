@@ -60,7 +60,8 @@ The most important optimisation. Instead of fetching your entire dataset on ever
     &filter_from=2026-03-15T00:00:00.000Z
 ```
 
-In your script, store the timestamp of the last successful sync and use it as `filter_from` on the next run. This way, each run fetches only new entries — typically a handful of rows — rather than your entire dataset.
+In your script, store the timestamp of the last successful sync and use it as `filter_from` on the next run. This way, each run fetches only new entries — typically a handful of rows — rather than your entire dataset.\
+`uploaded_at` **tracks both the creation of new entries and edits to existing entries.**
 
 **✅ Use per\_page=500**
 
@@ -137,7 +138,7 @@ function exportData() {
 
 **❌ Do not fetch your entire dataset on every run**
 
-Fetching all pages of a large project on every script execution is the most common cause of rate limit violations. It is unnecessary in almost all cases and places a significant load on our servers, affecting all Epicollect5 users.
+Fetching all pages of a large project on every script execution is the most common cause of rate limit violations. **It is unnecessary in almost all cases and places a significant load on our servers, affecting all Epicollect5 users.**
 
 Scripts that repeatedly fetch entire datasets without date filters will receive a `429 Too Many Requests` response. Persistent violations may result in automated API access being suspended for the affected project.
 
