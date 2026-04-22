@@ -55,7 +55,7 @@ The most important optimisation. Instead of fetching your entire dataset on ever
 ```
 /api/export/entries/{project-slug}
     ?form_ref={your-form-ref}
-    &per_page=500
+    &per_page=250
     &filter_by=uploaded_at
     &filter_from=2026-03-15T00:00:00.000Z
 ```
@@ -63,9 +63,9 @@ The most important optimisation. Instead of fetching your entire dataset on ever
 In your script, store the timestamp of the last successful sync and use it as `filter_from` on the next run. This way, each run fetches only new entries — typically a handful of rows — rather than your entire dataset.\
 `uploaded_at` **tracks both the creation of new entries and edits to existing entries.**
 
-**✅ Use per\_page=500**
+**✅ Use per\_page=250**
 
-Using smaller page sizes like `per_page=100` means 10× more requests for the same data. Always use `per_page=500` unless you have a specific reason not to.
+Using smaller page sizes like `per_page=100` means 5× more requests for the same data. Always use `per_page=250` unless you have a specific reason not to.
 
 **✅ Add a delay between requests in your script**
 
@@ -92,7 +92,7 @@ function exportData() {
   
   while (usage.count < 10) { // Strict 10 requests per hour limit
     // 2. Updated per_page to 500
-    const url = `${baseUrl}?form_ref=${formRef}&per_page=500&page=${page}` +
+    const url = `${baseUrl}?form_ref=${formRef}&per_page=250&page=${page}` +
                 `&filter_by=created_at&filter_from=${lastSync}&sort_order=ASC`;
     
     const response = UrlFetchApp.fetch(url, {
