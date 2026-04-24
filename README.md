@@ -42,6 +42,14 @@ Every day, hundreds of developers make requests to the Epicollect5 API. To help 
 **We reserve the right to lower these limits at any time if systems become overloaded.**
 {% endhint %}
 
+{% hint style="danger" %}
+To ensure consistent performance for all users, we recommend that applications operate well below the published rate limits (for example, **targeting no more than \~50% of the maximum allowed rate**).
+
+Applications that consistently operate at or near the limits, or that repeatedly request large datasets without filtering, **may experience throttling or temporary restrictions**, especially during periods of high system load.
+
+Where possible, we strongly encourage the use of incremental data access patterns (e.g. using `uploaded_at` or `created_at` filters) rather than repeated full dataset requests.
+{% endhint %}
+
 ## Google Apps Scripts Integration
 
 Google Apps Script is a popular way to sync Epicollect5 data into Google Sheets. To avoid hitting limits, follow the best practices below.
