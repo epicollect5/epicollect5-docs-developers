@@ -31,9 +31,9 @@ A full list of the available status codes can be found [here](https://five.epico
 
 We currently limit access to the API to
 
-* 10 requests per minute for projects (JSON structure).
-* 10 requests per minute for entries.
-* 30 requests per minute for media files.
+* 5 requests per minute for projects (JSON structure).
+* 5 requests per minute for entries.
+* 10 requests per minute for media files.
 * 500 entries per request max.
 * 10 auth tokens per hour.
 
