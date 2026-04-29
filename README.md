@@ -34,7 +34,7 @@ We currently limit access to the API to
 * 10 requests per minute for projects (JSON structure).
 * 10 requests per minute for entries.
 * 30 requests per minute for media files.
-* 1000 entries per request max.
+* 500 entries per request max.
 * 10 auth tokens per hour.
 
 {% hint style="warning" %}
@@ -99,7 +99,7 @@ function exportData() {
   let allData = [];
   
   while (usage.count < 10) { // Strict 10 requests per hour limit
-    // 2. Updated per_page to 500
+    // 2. Updated per_page to 250
     const url = `${baseUrl}?form_ref=${formRef}&per_page=250&page=${page}` +
                 `&filter_by=created_at&filter_from=${lastSync}&sort_order=ASC`;
     

@@ -18,7 +18,7 @@ We assume the base domain to be **five.epicollect.net**.
 | form\_ref           | no                  | The ref used to identify a form. If this is not supplied, the first form form\_ref will be used by default.                  |
 | uuid                | no                  | The unique identifier for a particular branch entry.                                                                         |
 | map\_index          | no                  | The index of the particular mapping you want the data to be mapped against. The default mapping is used if none is supplied. |
-| per\_page           | no                  | The number of entries to show per page. (max 1000).Default is 50.                                                            |
+| per\_page           | no                  | The number of entries to show per page. (max 500).Default is 50.                                                             |
 | page                | no                  | The current page.                                                                                                            |
 | format              | no                  | The format of the exported data.                                                                                             |
 | headers             | no                  | Whether to include headers or not.                                                                                           |

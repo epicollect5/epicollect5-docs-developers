@@ -28,7 +28,7 @@ http_status(res1)
 ct1<- read.csv(res1$url)
 str(ct1)
 
-# url.branch<- paste("https://five.epicollect.net/api/export/entries/", proj.slug, "?map_index=0&branch_ref=", branch.ref, "&format=json&per_page=1000000", sep= "") ## if using json; pushing max number of records from default 50 to 10^6
+# url.branch<- paste("https://five.epicollect.net/api/export/entries/", proj.slug, "?map_index=0&branch_ref=", branch.ref, "&format=json&per_page=500", sep= "") ## if using json; pushing max number of records from default 50 to 500
 url.branch<- paste("https://five.epicollect.net/api/export/entries/", proj.slug, "?map_index=0&branch_ref=", branch.ref, "&format=csv&headers=true", sep= "")
 
 res2<- GET(url.branch, add_headers("Authorization" = paste("Bearer", token)))

@@ -18,7 +18,7 @@ We assume the base domain to be **five.epicollect.net**.
 | parent\_form\_ref | no                  | The form ref of a child form's parent.                                                                                               |
 | parent\_uuid      | no                  | The uuid of a child entry's parent.                                                                                                  |
 | map\_index        | no                  | The integer index of the particular mapping you want the data to be mapped against. The default mapping is used if none is supplied. |
-| per\_page         | no                  | The number of entries to show per page. (integer, max 1000). Default is 50.                                                          |
+| per\_page         | no                  | The number of entries to show per page. (integer, max 500). Default is 50.                                                           |
 | page              | no                  | The current page. (integer)                                                                                                          |
 | sort\_by          | no                  | The column on which to sort.                                                                                                         |
 | sort\_order       | no                  | The sort order for the entries: ASC (ascending) or DESC (descending).                                                                |
