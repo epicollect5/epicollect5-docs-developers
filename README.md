@@ -35,7 +35,19 @@ We currently limit access to the API to
 * 5 requests per minute for entries.
 * 10 requests per minute for media files.
 * 500 entries per request max.
-* 10 auth tokens per hour.
+* 10 auth tokens per hour.<br>
+
+For example, using `per_page=500` gives access to 2500 entries (JSON objects or CSV rows) per minute (150000 per hour)
+
+These limits are intentionally designed to be generous and are broadly in line with common industry standards for high-throughput APIs serving JSON payloads.
+
+For context, comparable platforms operate at similar or more restrictive effective rates when normalized per request/response payload size:
+
+* **X (Twitter) API**: rate-limited endpoints typically allow \~**300–2,000 requests per 15 minutes** depending on tier and endpoint, with responses also returning JSON objects representing tweets, users, and metadata.
+* **Google Maps APIs**: usage is quota-based (e.g., **40,000–100,000 requests/day** on paid tiers), with each request returning structured JSON for places, geocoding, or directions.
+* **YouTube Data API**: generally capped at **10,000 quota units per day**, where a single list call can consume 1–50+ units, returning JSON representations of videos, channels, or comments.
+
+In practice, Epicollect5’s throughput of **150,000 entries/hour (via pagination batching)** is competitive with, and often more permissive than, these large-scale APIs when normalized to comparable JSON payload retrieval workloads.
 
 {% hint style="warning" %}
 Every day, hundreds of developers make requests to the Epicollect5 API. To help manage the sheer volume of these requests, limits are placed on the number of requests that can be made. These limits help us provide a reliable and scalable API that our developer community relies on. \
@@ -68,12 +80,13 @@ The most important optimisation. Instead of fetching your entire dataset on ever
     &filter_from=2026-03-15T00:00:00.000Z
 ```
 
-In your script, store the timestamp of the last successful sync and use it as `filter_from` on the next run. This way, each run fetches only new entries — typically a handful of rows — rather than your entire dataset.\
-`uploaded_at` **tracks both the creation of new entries and edits to existing entries.**
+In your script, store the timestamp of the last successful sync (or the newest timestamp of your existing dataset) and use it as `filter_from` on the next run. This way, each run fetches only new entries — typically a handful of rows — rather than your entire dataset.\
+`uploaded_at` **tracks both the creation of new entries and edits to existing entries.**\
+`created_at` **tracks when an entry is created and never changes.**
 
-**✅ Use per\_page=250**
+**✅ Use per\_page=250 (or 500)**
 
-Using smaller page sizes like `per_page=100` means 5× more requests for the same data. Always use `per_page=250` unless you have a specific reason not to.
+Using smaller page sizes like `per_page=100` means 5× more requests for the same data. Always use `per_page=250`  or `per_page=500` unless you have a specific reason not to.
 
 **✅ Add a delay between requests in your script**
 
